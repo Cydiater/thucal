@@ -1,0 +1,17 @@
+{
+  "name": "update-thu-calendar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.9.0"
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "yargs": "^16.0.3"
+  }
+}
