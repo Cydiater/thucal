@@ -1,10 +1,11 @@
 'use strict';
 
 import IcsMaintainer from './IcsMaintainer'
+import yargs from 'yargs'
+import fs from 'fs'
+import axios from 'axios'
 
-const axios = require('axios');
-const fs = require('fs');
-const argv = require('yargs')
+const argv = yargs(process.argv)
 	.option('cookie', {
 		alias: 'c',
 		type: 'string',
