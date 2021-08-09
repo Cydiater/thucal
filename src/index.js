@@ -1,7 +1,8 @@
 'use strict';
 
+import IcsMaintainer from './IcsMaintainer'
+
 const axios = require('axios');
-const IcsMaintainer = require('./IcsMaintainer.js');
 const fs = require('fs');
 const argv = require('yargs')
 	.option('cookie', {
