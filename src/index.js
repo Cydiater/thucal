@@ -1,16 +1,12 @@
 'use strict';
 
 import IcsMaintainer from './IcsMaintainer'
+import { fetchCookie } from './agent.js'
 import yargs from 'yargs'
 import fs from 'fs'
 import axios from 'axios'
 
 const argv = yargs(process.argv)
-	.option('cookie', {
-		alias: 'c',
-		type: 'string',
-		demandOption: true
-	})
 	.option('output', {
 		alias: 'o',
 		type: 'string',
@@ -19,7 +15,6 @@ const argv = yargs(process.argv)
 	.argv;
 
 const base_url = 'https://zhjw.cic.tsinghua.edu.cn/jxmh_out.do';
-const cookie = argv.cookie;
 const filename = argv.o;
 
 function formatDate(date) {
@@ -29,7 +24,7 @@ function formatDate(date) {
 	return `${year}${month}${day}`;
 }
 
-async function fetchCalendarJson(startDate, endDate) {
+async function fetchCalendarJson(startDate, endDate, cookie) {
 	let response = await axios.get(base_url, {
 		headers: {
 			Cookie: cookie
@@ -49,6 +44,9 @@ async function fetchCalendarJson(startDate, endDate) {
 	let today = new Date(), one_year_later = new Date();
 	one_year_later.setFullYear(today.getFullYear() + 1);
 
+	const credential = JSON.parse(fs.readFileSync('credential.json'))
+	const cookie = await fetchCookie(credential)
+
 	let maintainer = new IcsMaintainer();
 
 	for (let day = today; day <= one_year_later; day.setDate(day.getDate() + 25)) {
@@ -57,7 +55,7 @@ async function fetchCalendarJson(startDate, endDate) {
 		if (one_year_later < endDate) 
 			endDate = one_year_later;
 
-		let json = await fetchCalendarJson(startDate, endDate);
+		let json = await fetchCalendarJson(startDate, endDate, cookie);
 		let courseArrayByDay = JSON.parse(json);
 
 		for (let coursesOfDay of courseArrayByDay) {

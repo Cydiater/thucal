@@ -9,7 +9,7 @@
   "license": "ISC",
   "scripts": {
     "build": "webpack",
-    "start": "node ./dist/bundle.js"
+    "start": "webpack && node ./dist/bundle.js"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -19,7 +19,8 @@
     "babel-loader": "^8.2.2",
     "eslint": "^7.9.0",
     "webpack": "^5.49.0",
-    "webpack-cli": "^4.7.2"
+    "webpack-cli": "^4.7.2",
+    "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
     "axios": "^0.20.0",
