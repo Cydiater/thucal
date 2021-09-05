@@ -1,17 +1,12 @@
-# thucal
+# THUCal
 
-Download the course arrangement from info, convert into a ICS file.
-
-## Usage
-
-1. Login [info](http://zhjw.cic.tsinghua.edu.cn/jxmh.do?m=bks_jxrl_all) with your credential 
-
-2. open dev tool and find the cookie with key `JSESSIONID`, which should be a string
-3. run `npm install` to install the deps.
-4. run `node . -c JSESSIONID=<your cookie> -o cal.ics`
-5. double click the ICS file.
-
-It's recommand that setup a dedicate calendar for the course. Finally you can get course like this. 
+从 Info 上抓取课程表，导出为 ICS 文件。
 
 ![](./img/teaser.png)
 
+## Quick Start
+
+1. 安装 Node.js
+2. `git clone git@github.com:Cydiater/thucal.git`
+3. `cd thucal && npm install`
+4. `npm run start`

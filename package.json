@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "prompts": "^2.4.1",
     "puppeteer": "^10.2.0",
     "yargs": "^16.0.3"
   }

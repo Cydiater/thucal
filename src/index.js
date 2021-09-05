@@ -2,20 +2,34 @@
 
 import IcsMaintainer from './IcsMaintainer'
 import { fetchCookie } from './agent.js'
-import yargs from 'yargs'
 import fs from 'fs'
 import axios from 'axios'
+import prompts from 'prompts'
 
-const argv = yargs(process.argv)
-	.option('output', {
-		alias: 'o',
-		type: 'string',
-		demandOption: true
-	})
-	.argv;
+const date = new Date();
+const defaultOutput = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + ".ics"
+
+const questions = [
+	{
+		type: 'text',
+		name: 'username',
+		initial: 'jiaojh19',
+		message: '您在清华大学信息门户的用户名'
+	},
+	{
+		type: 'password',
+		name: 'password',
+		message: '您在清华大学信息门户的密码'
+	},
+	{
+		type: 'text',
+		name: 'output',
+		initial: defaultOutput,
+		message: '存储为'
+	}
+]
 
 const base_url = 'https://zhjw.cic.tsinghua.edu.cn/jxmh_out.do';
-const filename = argv.o;
 
 function formatDate(date) {
 	let year = date.getFullYear(),
@@ -41,11 +55,12 @@ async function fetchCalendarJson(startDate, endDate, cookie) {
 }
 
 (async () => {
+	const args = await prompts(questions);
+
 	let today = new Date(), one_year_later = new Date();
 	one_year_later.setFullYear(today.getFullYear() + 1);
 
-	const credential = JSON.parse(fs.readFileSync('credential.json'))
-	const cookie = await fetchCookie(credential)
+	const cookie = await fetchCookie({username: args.username, password: args.password})
 
 	let maintainer = new IcsMaintainer();
 
@@ -69,7 +84,7 @@ async function fetchCalendarJson(startDate, endDate, cookie) {
 		}
 	}
 	
-	fs.writeFile(filename, maintainer.toString(), () => {
-		console.log("done");
+	fs.writeFile(args.output, maintainer.toString(), () => {
+		console.log("保存成功：" + args.output)
 	});
 })();

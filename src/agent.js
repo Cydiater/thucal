@@ -9,11 +9,13 @@ async function fetchCookie(crendential) {
 	await page.focus('input[name="password"]');
 	await page.keyboard.type(crendential.password);
 	await page.click('input[src="initial/all/images/t_09.gif"]');
-	await new Promise(r => setTimeout(r, 3000));
+	await page.waitForSelector('a[href="mailto:its@tsinghua.edu.cn"]')
+	await page.click('a[href="/render.userLayoutRootNode.uP"]')
+	await page.waitForSelector('a[href="mailto:its@tsinghua.edu.cn"]')
 	await page.goto('https://zhjw.cic.tsinghua.edu.cn/jxmh_out.do');
-	const cookies = await page.cookies()
+	const cookies = await page.cookies();
 	await browser.close();
-	return cookies[0].name + "=" + cookies[0].value
+	return cookies[0].name + "=" + cookies[0].value;
 }
 
 export { fetchCookie }
