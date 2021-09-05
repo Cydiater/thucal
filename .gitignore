@@ -3,3 +3,6 @@ config.js
 package-lock.json
 *.ics
 .DS_Store
+credential.json
+dist
+

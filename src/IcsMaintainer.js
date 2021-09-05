@@ -9,7 +9,7 @@ function formatDate(date) {
 	return `${year}${month}${day}T${hour}${minute}00`;
 }
 
-module.exports = class IcsMaintainter {
+export default class IcsMaintainter {
 	constructor() {
 		this._content = "";
 	}
