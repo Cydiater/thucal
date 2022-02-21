@@ -6,7 +6,28 @@
 
 ## Quick Start
 
-1. 安装 Node.js
-2. `git clone git@github.com:Cydiater/thucal.git`
-3. `cd thucal && npm install`
-4. `npm run start`
+### Install Node.js
+
+```sh
+brew install node
+```
+
+### Download Source Code
+
+```sh
+git clone git@github.com:Cydiater/thucal.git
+```
+
+### Install Dependency
+
+```sh
+cd thucal
+yarn install
+```
+
+### Run
+
+```sh
+yarn start
+```
+

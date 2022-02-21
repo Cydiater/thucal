@@ -61,6 +61,7 @@ async function fetchCalendarJson(startDate, endDate, cookie) {
 	one_year_later.setFullYear(today.getFullYear() + 1);
 
 	const cookie = await fetchCookie({username: args.username, password: args.password})
+	console.log(`fetched cookie = ${cookie}`);
 
 	let maintainer = new IcsMaintainer();
 
