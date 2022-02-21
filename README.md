@@ -1,6 +1,6 @@
 # thucal
 
-sync Tsinghua course with your local calender, wich ICS file format.
+Keep Tsinghua course in your local calender, wich ICS file format.
 
 ![](./img/teaser.png)
 
