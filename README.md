@@ -1,6 +1,6 @@
 # THUCal
 
-从 Info 上抓取课程表，导出为 ICS 文件。
+Sync Tsinghua course with your local calender, wich ICS file format.
 
 ![](./img/teaser.png)
 
